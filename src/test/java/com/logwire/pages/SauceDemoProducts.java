@@ -34,6 +34,27 @@ public class SauceDemoProducts {
     @FindBy(className = "shopping_cart_badge")
     public WebElement cartBadge;
 
+    @FindBy(id = "react-burger-menu-btn")
+    public WebElement menuButton;
+
+    @FindBy(className = "bm-menu-wrap")
+    public WebElement menu;
+
+    @FindBy(id = "react-burger-cross-btn")
+    public WebElement closeMenu;
+
+    @FindBy(id = "inventory_sidebar_link")
+    public WebElement allItemsLink;
+
+    @FindBy(id = "about_sidebar_link")
+    public WebElement aboutLink;
+
+    @FindBy(id = "logout_sidebar_link")
+    public WebElement logoutLink;
+
+    @FindBy(id = "reset_sidebar_link")
+    public WebElement resetLink;
+
     public void clickAddToCart(String productName) {
         for (WebElement product : allProducts) {
             if (product.getText().contains(productName)) {
@@ -73,5 +94,8 @@ public class SauceDemoProducts {
         return mostExpensiveProduct;
     }
 
+    public void clickMenu() {
+        menuButton.click();
+    }
 
 }

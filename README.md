@@ -13,7 +13,7 @@ Ce projet implémente l'automatisation des tests du site [SauceDemo](https://www
 
 ## Structure du projet
 
-- `src/test/java/com/logwire/classicTests/` : Contient des tests Selenium classiques, dont un test de connexion utilisant un fichier CSV pour la gestion des données.
+- `src/test/java/com/logwire/classicTests/` : Contient des tests Selenium classiques, dont un test de connexion utilisant un fichier CSV pour la gestion des données et un fichier .odt aui contient les scenarios de tests
 - `src/test/java/com/logwire/pages/` : Contient toutes les pages modélisées selon le pattern Page Object Model (POM).
 - `src/test/java/com/logwire/steps/` : Contient tous les steps définis pour les scénarios Cucumber.
 - `src/test/java/com/logwire/hooks/` : Contient les hooks pour la gestion des pré-conditions et post-conditions.
@@ -26,7 +26,7 @@ Ce projet implémente l'automatisation des tests du site [SauceDemo](https://www
 Les scénarios de tests automatisés couvrent plusieurs fonctionnalités du site SauceDemo :
 
 1. **Login** : Test de connexion avec différents utilisateurs.
-2. **Product Page** : Vérification de l'affichage des produits et interactions avec ceux-ci.
+2. **Product Page** : Vérification de l'affichage des produits et interactions avec ceux-ci, plus des tests sur le sidebar menu.
 3. **Cart** : Ajout et suppression de produits du panier.
 4. **Checkout** : Processus de validation de commande.
 5. **Vérification des prix** : Comparaison entre les prix affichés et calculés.
@@ -39,22 +39,4 @@ Les scénarios de tests automatisés couvrent plusieurs fonctionnalités du site
 
 ```bash
 mvn test
-```
-
-### Exécuter uniquement les tests Selenium classiques
-
-```bash
-mvn test -Dtest=com.logwire.classicTests.*
-```
-
-### Exécuter les tests Cucumber avec un tag spécifique
-
-```bash
-mvn test -Dcucumber.options="--tags @nom_du_tag"
-```
-
-### Exécuter tous les tests via le script
-
-```bash
-./src/test/java/com/logwire/scripts/tests_runner.sh
 ```
