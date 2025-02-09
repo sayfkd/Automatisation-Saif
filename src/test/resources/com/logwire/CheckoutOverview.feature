@@ -21,11 +21,11 @@ Feature: Checkout over
     Scenario: Je verifie la liste des produits
         When je suis redirige vers la page de Checkout Overview
         Then la liste des produits est affiche sur la page de checkout
-    
+
     @CheckoutOverviewTotalPrice
     Scenario: Je verifie le prix total des produits
-        When la liste des produits est affiche sur la page de checkout
-        Then le prix total des produits est 39.98
+            When la liste des produits est affiche sur la page de checkout
+            Then le prix total des produits est juste
 
     @CheckoutOverviewFinish
     Scenario: Je clique sur le bouton Finish

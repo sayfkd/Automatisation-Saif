@@ -11,11 +11,16 @@ Feature: Cart
     When je clique sur le panier
     Then je suis redirige vers la page du panier
 
-    @AddToCart
-    Scenario: Verification du badge du panier 
-    When je clique sur le bouton Add to card du produit "Sauce Labs Backpack"
-    And je clique sur le bouton Add to card du produit "Sauce Labs Bike Light"
-    Then le badge du panier affiche 2
+    @AddToCart_v2
+    Scenario: Verification du badge du panier après ajout de produits
+    When je clique sur le bouton Add to card du produit "<produit1>"
+    And je clique sur le bouton Add to card du produit "<produit2>"
+    Then le badge du panier affiche <nombreProduits>
+
+    Examples:
+      | produit1               | produit2                | nombreProduits |
+      | Sauce Labs Backpack    | Sauce Labs Bike Light   | 2              |
+      | Sauce Labs Bolt T-Shirt| Sauce Labs Fleece Jacket| 2              |
 
     @CartRemoval
     Scenario Outline: Vérification de la suppression des produits du panier
@@ -43,12 +48,15 @@ Feature: Cart
         | Sauce Labs Bike Light     | 9.99  |
         | Sauce Labs Bolt T-Shirt   | 15.99 |
 
-    @Checkout
-    Scenario: Verification du checkout
-    When je clique sur le bouton Add to card du produit "Sauce Labs Backpack"
-    And je clique sur le bouton Add to card du produit "Sauce Labs Bike Light"
-    And je clique sur le panier
-    And je clique sur le bouton Checkout
-    Then je suis redirige vers la page de checkout
+    @Checkout_v2
+    Scenario: Verification du checkout avec différents produits
+        When je clique sur le bouton Add to card du produit "<produit1>"
+        And je clique sur le bouton Add to card du produit "<produit2>"
+        And je clique sur le panier
+        And je clique sur le bouton Checkout
+        Then je suis redirige vers la page de checkout
 
-
+        Examples:
+        | produit1               | produit2               |
+        | Sauce Labs Backpack    | Sauce Labs Bike Light  |
+        | Sauce Labs Bolt T-Shirt| Sauce Labs Fleece Jacket|

@@ -1,5 +1,6 @@
 package com.logwire.steps;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.logwire.pages.CheckoutOverview;
 import com.logwire.tools.WebDriverTool;
@@ -22,11 +23,6 @@ public class CheckoutOverviewSteps {
         });
     }
 
-    @Then("le prix total des produits est {float}")
-    public void le_prix_total_des_produits_est(float f) {
-        assertTrue( this.sauceDemoCheckoutOverview.subtotalLabel.getText().contains(String.valueOf(f)));
-    }
-
     @When("je clique sur le bouton Finish")
     public void je_clique_sur_le_bouton_Finish() {
         this.sauceDemoCheckoutOverview.finishButton.click();
@@ -37,4 +33,10 @@ public class CheckoutOverviewSteps {
         assertTrue( WebDriverTool.getDriver().getCurrentUrl().contains("checkout-complete"));
         assertTrue( this.sauceDemoCheckoutOverview.title.getText().contains("Thank you for your order!"));
     }
+
+    @Then("le prix total des produits est juste")
+    public void le_prix_total_des_produits_est_juste() {
+    assertEquals(Float.parseFloat(this.sauceDemoCheckoutOverview.subtotalLabel.getText().substring(1)), this.sauceDemoCheckoutOverview.calculatTotalPrice(), 0.01F);    
+    }
+    
 }
