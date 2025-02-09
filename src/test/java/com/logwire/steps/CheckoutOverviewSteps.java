@@ -1,7 +1,7 @@
 package com.logwire.steps;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import com.logwire.pages.SauceDemoCheckoutOverview;
+import com.logwire.pages.CheckoutOverview;
 import com.logwire.tools.WebDriverTool;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,10 +9,10 @@ import io.cucumber.java.en.When;
 public class CheckoutOverviewSteps {
 
 
-    SauceDemoCheckoutOverview sauceDemoCheckoutOverview;
+    CheckoutOverview sauceDemoCheckoutOverview;
 
     public CheckoutOverviewSteps() {
-        this.sauceDemoCheckoutOverview = new SauceDemoCheckoutOverview(WebDriverTool.getDriver());
+        this.sauceDemoCheckoutOverview = new CheckoutOverview(WebDriverTool.getDriver());
     }
 
     @Then("la liste des produits est affiche sur la page de checkout")

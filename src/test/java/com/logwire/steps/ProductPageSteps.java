@@ -10,18 +10,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.logwire.pages.SauceDemoProducts;
+import com.logwire.pages.Products;
 import com.logwire.tools.WebDriverTool;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ProductPageSteps {
 
-    SauceDemoProducts productsPage;
+    Products productsPage;
     WebDriverWait wait = new WebDriverWait(WebDriverTool.getDriver(), Duration.ofSeconds(10));
     
     public ProductPageSteps() {
-        this.productsPage = new SauceDemoProducts(WebDriverTool.getDriver());
+        this.productsPage = new Products(WebDriverTool.getDriver());
         }    
 
     @When("je verifie la liste des produits")
@@ -153,6 +153,16 @@ public class ProductPageSteps {
     @Then("je suis redirige vers la page de login")
     public void je_suis_redirige_vers_la_page_de_login() {
         assertTrue(WebDriverTool.getDriver().getCurrentUrl().equals("https://www.saucedemo.com/"));
+    }
+
+    @Then("les produits sont affiches dans lordre alphabetique")
+    public void les_produits_sont_affiches_dans_lordre_alphabetique() {
+        assertTrue(this.productsPage.getAlphabeticalProduct().getText().equals(this.productsPage.allProducts.get(0).getText()));
+    }
+
+    @Then("les produits sont affiches dans linverse dordre alphabetique")
+    public void les_produits_sont_affiches_dans_linverse_dordre_alphabetique() {
+        assertTrue(this.productsPage.getInverseAlphabeticalProduct().getText().equals(this.productsPage.allProducts.get(0).getText()));
     }
 
 }

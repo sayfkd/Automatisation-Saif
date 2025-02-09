@@ -2,8 +2,8 @@ package com.logwire.steps;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.logwire.pages.SauceDemoCart;
-import com.logwire.pages.SauceDemoCheckout;
+import com.logwire.pages.Cart;
+import com.logwire.pages.Checkout;
 import com.logwire.tools.WebDriverTool;
 
 import io.cucumber.java.en.Then;
@@ -12,12 +12,12 @@ import io.cucumber.java.en.When;
 public class CheckoutSteps {
  
     
-    SauceDemoCart sauceDemoCart;
-    SauceDemoCheckout sauceDemoCheckout;
+    Cart sauceDemoCart;
+    Checkout sauceDemoCheckout;
 
     public CheckoutSteps() {
-    this.sauceDemoCart = new SauceDemoCart(WebDriverTool.getDriver());
-    this.sauceDemoCheckout = new SauceDemoCheckout(WebDriverTool.getDriver());
+    this.sauceDemoCart = new Cart(WebDriverTool.getDriver());
+    this.sauceDemoCheckout = new Checkout(WebDriverTool.getDriver());
     }
 
     @When("je clique sur le bouton Continue")

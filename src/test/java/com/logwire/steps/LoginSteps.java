@@ -5,20 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.Duration;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.logwire.pages.SauceDemoLogin;
-import com.logwire.pages.SauceDemoProducts;
+import com.logwire.pages.Login;
+import com.logwire.pages.Products;
 import com.logwire.tools.WebDriverTool;
 
 public class LoginSteps {
 
-    SauceDemoLogin loginPage;    
-    SauceDemoProducts productsPage;
+    Login loginPage;    
+    Products productsPage;
 
 
     @Given("je suis sur la page {string}")
     public void je_suis_sur_la_page(String s) {
         WebDriverTool.getDriver().get(s);
-        loginPage = new SauceDemoLogin(WebDriverTool.getDriver());
+        loginPage = new Login(WebDriverTool.getDriver());
     }
 
     @When("je saisis le password {string}")
@@ -38,7 +38,7 @@ public class LoginSteps {
 
     @Then("je suis redirige vers la page produit")
     public void je_suis_redirige_vers_la_page_produit() {
-        productsPage = new SauceDemoProducts(WebDriverTool.getDriver());
+        productsPage = new Products(WebDriverTool.getDriver());
         assertTrue( productsPage.allProducts.size() > 0);
     }
 

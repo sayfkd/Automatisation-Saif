@@ -19,22 +19,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import com.logwire.pages.SauceDemoCart;
-import com.logwire.pages.SauceDemoCheckout;
-import com.logwire.pages.SauceDemoCheckoutOverview;
-import com.logwire.pages.SauceDemoLogin;
-import com.logwire.pages.SauceDemoProducts;
+import com.logwire.pages.Cart;
+import com.logwire.pages.Checkout;
+import com.logwire.pages.CheckoutOverview;
+import com.logwire.pages.Login;
+import com.logwire.pages.Products;
 
 @Tag("SauceDemoTests")
 @Disabled
 public class SauceDemoTests {
 
     WebDriver driver;
-    SauceDemoLogin sauceDemoLogin;
-    SauceDemoProducts sauceDemoProducts;
-    SauceDemoCart sauceDemoCart;
-    SauceDemoCheckout sauceDemoCheckout;
-    SauceDemoCheckoutOverview sauceDemoCheckoutOverview;
+    Login sauceDemoLogin;
+    Products sauceDemoProducts;
+    Cart sauceDemoCart;
+    Checkout sauceDemoCheckout;
+    CheckoutOverview sauceDemoCheckoutOverview;
 
     @BeforeEach
     public void setUp() throws InterruptedException {
@@ -52,7 +52,7 @@ public class SauceDemoTests {
                 break;
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        sauceDemoLogin = new SauceDemoLogin(driver);
+        sauceDemoLogin = new Login(driver);
         driver.get("https://www.saucedemo.com/");
     }
 
@@ -93,7 +93,7 @@ public class SauceDemoTests {
     @DisplayName("Test de la liste des produits affichés")
     public void ProductListTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
+        sauceDemoProducts = new Products(driver);
         System.out.println("list size " + sauceDemoProducts.allAddToCart.size());
         assertTrue(sauceDemoProducts.allAddToCart.size()>0);
     }
@@ -105,7 +105,7 @@ public class SauceDemoTests {
     @DisplayName("Test d'ajout d'un produit au panier")
     public void ProductPageAddToCartTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
+        sauceDemoProducts = new Products(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.allAddToCart.get(1).click();
         assertEquals("2", sauceDemoProducts.cart.getText());
@@ -116,7 +116,7 @@ public class SauceDemoTests {
     @DisplayName("Test de navigation vers la page panier")
     public void goToCartPageTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
+        sauceDemoProducts = new Products(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         assertTrue(driver.getPageSource().contains("Checkout"));
@@ -127,8 +127,8 @@ public class SauceDemoTests {
     @DisplayName("Test de vérification du prix sur la page panier")
     public void cartPagePriceTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
-        sauceDemoCart = new SauceDemoCart(driver);
+        sauceDemoProducts = new Products(driver);
+        sauceDemoCart = new Cart(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         assertEquals("$29.99", sauceDemoCart.firstProductPrice.getText());
@@ -139,8 +139,8 @@ public class SauceDemoTests {
     @DisplayName("Test de suppression d'un produit du panier")
     public void cartPageRemoveProductTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
-        sauceDemoCart = new SauceDemoCart(driver);
+        sauceDemoProducts = new Products(driver);
+        sauceDemoCart = new Cart(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         assertEquals("$29.99", sauceDemoCart.firstProductPrice.getText());
@@ -154,8 +154,8 @@ public class SauceDemoTests {
     @DisplayName("Test de continuer les achats")
     public void continueShoppingTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
-        sauceDemoCart = new SauceDemoCart(driver);
+        sauceDemoProducts = new Products(driver);
+        sauceDemoCart = new Cart(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         sauceDemoCart.continueShoppingButton.click();
@@ -168,9 +168,9 @@ public class SauceDemoTests {
     @DisplayName("Test de boutton de checkout")
     public void checkoutButtonTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
-        sauceDemoCart = new SauceDemoCart(driver);
-        sauceDemoCheckout = new SauceDemoCheckout(driver);
+        sauceDemoProducts = new Products(driver);
+        sauceDemoCart = new Cart(driver);
+        sauceDemoCheckout = new Checkout(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         sauceDemoCart.checkoutButton.click();
@@ -182,9 +182,9 @@ public class SauceDemoTests {
     @DisplayName("Test du boutton cancel dans la page checkout")
     public void checkoutCancelButtonTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
-        sauceDemoCart = new SauceDemoCart(driver);
-        sauceDemoCheckout = new SauceDemoCheckout(driver);
+        sauceDemoProducts = new Products(driver);
+        sauceDemoCart = new Cart(driver);
+        sauceDemoCheckout = new Checkout(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         sauceDemoCart.checkoutButton.click();
@@ -197,9 +197,9 @@ public class SauceDemoTests {
     @DisplayName("Test de la saisie des informations de livraison")
     public void checkoutInformationTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
-        sauceDemoCart = new SauceDemoCart(driver);
-        sauceDemoCheckout = new SauceDemoCheckout(driver);
+        sauceDemoProducts = new Products(driver);
+        sauceDemoCart = new Cart(driver);
+        sauceDemoCheckout = new Checkout(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         sauceDemoCart.checkoutButton.click();
@@ -215,10 +215,10 @@ public class SauceDemoTests {
     @DisplayName("Test de la validation des informations de livraison")
     public void checkoutValidationTest() {
         sauceDemoLogin.login("standard_user", "secret_sauce");
-        sauceDemoProducts = new SauceDemoProducts(driver);
-        sauceDemoCart = new SauceDemoCart(driver);
-        sauceDemoCheckout = new SauceDemoCheckout(driver);
-        sauceDemoCheckoutOverview = new SauceDemoCheckoutOverview(driver);
+        sauceDemoProducts = new Products(driver);
+        sauceDemoCart = new Cart(driver);
+        sauceDemoCheckout = new Checkout(driver);
+        sauceDemoCheckoutOverview = new CheckoutOverview(driver);
         sauceDemoProducts.allAddToCart.get(0).click();
         sauceDemoProducts.clickCart();
         sauceDemoCart.checkoutButton.click();

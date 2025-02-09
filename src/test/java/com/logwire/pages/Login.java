@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SauceDemoLogin {
+public class Login {
       
-    public SauceDemoLogin(WebDriver driver) {
+    public Login(WebDriver driver) {
         PageFactory.initElements(driver, this);   
     }
     
@@ -25,6 +25,7 @@ public class SauceDemoLogin {
     public WebElement messageError;
 
     //actions
+
     public void saisirUsername(String username) {
         usernameElement.sendKeys(username);
     }

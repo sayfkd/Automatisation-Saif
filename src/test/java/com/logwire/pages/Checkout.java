@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SauceDemoCheckout {
+public class Checkout {
 
-    public SauceDemoCheckout(WebDriver driver) {
+    public Checkout(WebDriver driver) {
         PageFactory.initElements(driver, this);   
     }
 
@@ -32,5 +32,16 @@ public class SauceDemoCheckout {
 
     @FindBy(className = "error")
     public WebElement errorMessage;
+
+    //actions
+    public void clickContinue() {
+        continueButton.click();
+    }
+
+    public void fillForm(String firstName, String lastName, String postalCode) {
+        this.firstName.sendKeys(firstName);
+        this.lastName.sendKeys(lastName);
+        this.postalCode.sendKeys(postalCode);
+    }
     
 }

@@ -2,8 +2,8 @@ package com.logwire.steps;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.logwire.pages.SauceDemoCart;
-import com.logwire.pages.SauceDemoProducts;
+import com.logwire.pages.Cart;
+import com.logwire.pages.Products;
 import com.logwire.tools.WebDriverTool;
 
 import io.cucumber.java.en.Then;
@@ -11,13 +11,13 @@ import io.cucumber.java.en.When;
 
 public class CartSteps {
 
-    SauceDemoCart sauceDemoCart;
-    SauceDemoProducts sauceDemoProducts;
+    Cart sauceDemoCart;
+    Products sauceDemoProducts;
 
     
     public CartSteps() {
-        this.sauceDemoCart = new SauceDemoCart(WebDriverTool.getDriver());
-        this.sauceDemoProducts = new SauceDemoProducts(WebDriverTool.getDriver());
+        this.sauceDemoCart = new Cart(WebDriverTool.getDriver());
+        this.sauceDemoProducts = new Products(WebDriverTool.getDriver());
     }
 
 

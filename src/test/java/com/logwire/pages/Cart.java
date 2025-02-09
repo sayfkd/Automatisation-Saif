@@ -2,15 +2,16 @@ package com.logwire.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SauceDemoCart {
+public class Cart {
     
-    public SauceDemoCart(WebDriver driver) {
+    public Cart(WebDriver driver) {
         PageFactory.initElements(driver, this);   
     }
 
@@ -31,5 +32,30 @@ public class SauceDemoCart {
 
     @FindBy(css = ".cart_item")
     public List<WebElement> cartContents;
-    
+
+    //actions 
+    public void clickRemoveButton(String productName) {
+        for (WebElement product : cartContents) {
+            if (product.getText().contains(productName)) {
+                product.findElement(By.xpath(".//button")).click();
+            }
+        }
+    }
+
+    public void clickCheckoutButton() {
+        checkoutButton.click();
+    }
+
+    public void clickContinueShoppingButton() {
+        continueShoppingButton.click();
+    }
+
+    public void clickRemoveButton() {
+        RemoveButtons.forEach(WebElement::click);
+    }
+
+    public void clickRemoveButton(int index) {
+        RemoveButtons.get(index).click();
+    }
+
 }

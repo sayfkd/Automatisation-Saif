@@ -10,9 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class SauceDemoProducts {
+public class Products {
     
-    public SauceDemoProducts(WebDriver driver) {
+    public Products(WebDriver driver) {
         PageFactory.initElements(driver, this);   
     }
 
@@ -98,4 +98,23 @@ public class SauceDemoProducts {
         menuButton.click();
     }
 
+    public WebElement getAlphabeticalProduct() {
+        WebElement alphabeticalProduct = allProducts.get(0);
+        for (WebElement product : allProducts) {
+            if (product.findElement(By.className("inventory_item_name")).getText().compareTo(alphabeticalProduct.findElement(By.className("inventory_item_name")).getText()) < 0) {
+                alphabeticalProduct = product;
+            }
+        }
+        return alphabeticalProduct;
+    }
+
+    public WebElement getInverseAlphabeticalProduct() {
+        WebElement alphabeticalProduct = allProducts.get(0);
+        for (WebElement product : allProducts) {
+            if (product.findElement(By.className("inventory_item_name")).getText().compareTo(alphabeticalProduct.findElement(By.className("inventory_item_name")).getText()) > 0) {
+                alphabeticalProduct = product;
+            }
+        }
+        return alphabeticalProduct;
+    }
 }

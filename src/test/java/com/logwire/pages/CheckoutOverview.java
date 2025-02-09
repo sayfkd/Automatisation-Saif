@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class SauceDemoCheckoutOverview {
+public class CheckoutOverview {
     
-    public SauceDemoCheckoutOverview(WebDriver webDriver) {
+    public CheckoutOverview(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);   
     }
 
@@ -26,5 +26,10 @@ public class SauceDemoCheckoutOverview {
     @FindBy(className = "complete-header")
     public WebElement title;
 
+    //actions
+
+    public void clickFinish() {
+        finishButton.click();
+    }
 
 }

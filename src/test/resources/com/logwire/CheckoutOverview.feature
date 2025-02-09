@@ -16,15 +16,18 @@ Feature: Checkout over
         And je saisis le code postal "12345"
         And je clique sur le bouton Continue
         Then je suis redirige vers la page de Checkout Overview
-
+    
+    @CheckoutOverviewProducts
     Scenario: Je verifie la liste des produits
         When je suis redirige vers la page de Checkout Overview
         Then la liste des produits est affiche sur la page de checkout
     
+    @CheckoutOverviewTotalPrice
     Scenario: Je verifie le prix total des produits
         When la liste des produits est affiche sur la page de checkout
         Then le prix total des produits est 39.98
 
+    @CheckoutOverviewFinish
     Scenario: Je clique sur le bouton Finish
         When je clique sur le bouton Finish
         Then je suis redirige vers la page final 
