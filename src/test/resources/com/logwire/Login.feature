@@ -1,6 +1,5 @@
 @Login
 Feature: Login to SauceDemo 2
-
     Background:
         Given je suis sur la page "https://www.saucedemo.com/"
 
@@ -16,7 +15,7 @@ Feature: Login to SauceDemo 2
         | username       | password       | url                        |
         | standard_user  | secret_sauce   | https://www.saucedemo.com/ |
         | visual_user    | secret_sauce   | https://www.saucedemo.com/ |
-        | problem_user   | secret_sauce   | https://www.saucedemo.com/ | 
+        | problem_user   | secret_sauce   | https://www.saucedemo.com/ |
 
     @invalid_credentials
     Scenario: Login avec username valide et password invalide
