@@ -5,11 +5,6 @@ pipeline {
         }
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/sayfkd/Automatisation-Saif'
-            }
-        }
 
         stage('Start Selenium Grid') {
             steps {
