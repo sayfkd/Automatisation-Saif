@@ -1,13 +1,13 @@
 pipeline {
   agent {
     docker {
-      image 'selenium/standalone-chrome'
+      image 'selenium-maven'
     }
   }
   stages {
     stage('Run Tests') {
       steps {
-        sh './mvnw clean test'
+        sh 'mvn clean test'
       }
     }
   }
