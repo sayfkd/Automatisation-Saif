@@ -1,5 +1,6 @@
 package com.logwire.tools;
 
+import org.junit.jupiter.api.parallel.Execution;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -7,7 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-
+@Execution(org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT)
 public class WebDriverTool {
 
     static public WebDriver driver;
