@@ -2,13 +2,24 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven' 
-        jdk 'JDK17'  
+        maven 'Maven' // Assure-toi qu'il est configuré dans Jenkins
+        jdk 'JDK17'   // Assure-toi qu'il est configuré dans Jenkins
     }
 
     stages {
-        
-         stage('Build') {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/sayfkd/Automatisation-Saif'
+            }
+        }
+
+        stage('Setup') {
+            steps {
+                sh 'apt-get update && apt-get install -y maven openjdk-17-jdk'
+            }
+        }
+
+        stage('Build') {
             steps {
                 sh 'mvn clean install'
             }
@@ -22,21 +33,8 @@ pipeline {
 
         stage('Generate Reports') {
             steps {
-                sh 'mvn verify'
+                cucumber buildStatus: "false", fileIncludePattern: '**/target/cucumber-reports/*.json', jsonReportDirectory: 'target/cucumber-reports'
             }
-        }
-
-        stage('Publish Reports') {
-            steps {
-                cucumber buildStatus: false, fileIncludePattern: '**/target/cucumber-reports/*.json', jsonReportDirectory: 'target/cucumber-reports'
-            }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-            junit '**/target/surefire-reports/*.xml'
         }
     }
 }
