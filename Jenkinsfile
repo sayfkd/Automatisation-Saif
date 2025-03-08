@@ -2,6 +2,7 @@ pipeline {
   agent any
   stages {
     stage('Verify browsers are installed') {
+        steps{
      script {
           // Installer Google Chrome sur l'agent Jenkins (si ce n'est pas déjà fait)
           sh 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
