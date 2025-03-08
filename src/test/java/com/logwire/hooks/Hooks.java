@@ -18,12 +18,5 @@ public class Hooks {
     public void AfterEach(){
         WebDriverTool.tearDown();
     }
-
-    @After
-    public void takeScreenshotOnFailure(Scenario scenario) {
-        if (scenario.isFailed()) {
-            byte[] screenshot = ((TakesScreenshot) WebDriverTool.getDriver() ).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failure Screenshot");
-        }
-    }
+    
 }
