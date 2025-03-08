@@ -1,12 +1,10 @@
 pipeline {
-  agent any
-  stages {
-    stage('Verify browsers are installed') {
-      steps {
-        sh 'google-chrome --version'
-        sh 'firefox --version'
-      }
+  agent {
+    docker {
+      image 'selenium/standalone-chrome'
     }
+  }
+  stages {
     stage('Run Tests') {
       steps {
         sh './mvnw clean test'
