@@ -1,11 +1,9 @@
 pipeline {
-    agent any
-
-    tools {
-        maven 'Maven' // Assure-toi qu'il est configuré dans Jenkins
-        jdk 'JDK17'   // Assure-toi qu'il est configuré dans Jenkins
+    agent {
+        docker {
+            image 'maven:3.8.5-openjdk-17'
+        }
     }
-
     stages {
         stage('Checkout') {
             steps {
@@ -13,27 +11,19 @@ pipeline {
             }
         }
 
-        stage('Setup') {
+        stage('Start Selenium Grid') {
             steps {
-                sh 'apt-get update && apt-get install -y maven openjdk-17-jdk'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
+                sh '''
+                    docker network create selenium-grid || true
+                    docker run -d -p 4444:4444 --net selenium-grid --name selenium-hub selenium/hub || true
+                    docker run -d --net selenium-grid --name chrome-node -e HUB_HOST=selenium-hub selenium/node-chrome || true
+                '''
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'mvn test -Dheadless=true'
-            }
-        }
-
-        stage('Generate Reports') {
-            steps {
-                cucumber buildStatus: "false", fileIncludePattern: '**/target/cucumber-reports/*.json', jsonReportDirectory: 'target/cucumber-reports'
+                sh 'mvn clean test -Ddriver=chrome'
             }
         }
     }
