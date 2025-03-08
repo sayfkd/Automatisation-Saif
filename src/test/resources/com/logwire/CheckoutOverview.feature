@@ -24,7 +24,7 @@ Feature: Checkout over
 
     @CheckoutOverviewTotalPrice
     Scenario: Je verifie le prix total des produits
-            When la liste des produits est affiche sur la page de checkout
+            When la liste des produits est affiche sur la page de checkout 
             Then le prix total des produits est juste
 
     @CheckoutOverviewFinish
