@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'selenium/standalone-chrome'
     tools {
         maven 'M3'
     }
