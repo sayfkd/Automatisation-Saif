@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker { image 'selenium/standalone-chrome' } } 
+    agent { docker {
+                image "selenium/standalone-chrome" 
+                args '--entrypoint=""'
+            } 
+        } 
+
     tools {
         maven 'M3'
     }
