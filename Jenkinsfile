@@ -1,20 +1,12 @@
+
+Copy
 pipeline {
-  agent {
-    docker {
-      image 'your-dockerhub-username/my-selenium-maven'
-      args '-v /dev/shm:/dev/shm'
+    agent any
+    tools {
+        maven 'M3'
+        jdk 'JDK17'
     }
-  }
-  stages {
-    stage('Verify Chrome Version') {
-      steps {
-        sh 'google-chrome --version'
-      }
+    stages {
+        stage('mvn ') { steps { sh "mvn --version" } }
     }
-    stage('Run Tests') {
-      steps {
-        sh 'mvn test'
-      }
-    }
-  }
-}
+git }
