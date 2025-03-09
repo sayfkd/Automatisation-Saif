@@ -1,12 +1,15 @@
 pipeline {
-    agent { docker { image 'maven:3.8.6-openjdk-11' } } 
+    agent { docker { image 'selenium/standalone-chrome' } } 
     tools {
         maven 'M3'
     }
 
     stages {
-        stage('mvn ') { 
+        stage('mvn check ') { 
             steps { sh "mvn --version" } 
+        }
+        stage('chrome check ') { 
+            steps { sh "google-chrome --version" } 
         }
         stage('test ') { 
             steps { sh "mvn clean test" } 
