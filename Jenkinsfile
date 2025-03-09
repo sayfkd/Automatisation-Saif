@@ -15,6 +15,15 @@ pipeline {
       }
     }
 
+    stage('Install Maven') {
+      steps {
+        sh '''
+        apt update
+        apt install -y maven
+        '''
+      }
+    }
+
     stage('Run Tests') {
       steps {
         script {
