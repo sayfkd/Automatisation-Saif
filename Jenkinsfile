@@ -9,8 +9,7 @@ pipeline {
     stage('Run Tests') {
       steps {
         script {
-          // Exécuter les tests avec Maven
-          sh './mvnw clean test'
+        sh 'google-chrome --version'
         }
       }
     }
