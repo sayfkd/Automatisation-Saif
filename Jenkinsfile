@@ -1,34 +1,19 @@
 pipeline {
   agent {
     docker {
-      image 'selenium/standalone-chrome:latest'
+      image 'your-dockerhub-username/my-selenium-maven'
       args '-v /dev/shm:/dev/shm'
     }
   }
   stages {
-
-    stage('verify chrome version') {
+    stage('Verify Chrome Version') {
       steps {
-        script {
         sh 'google-chrome --version'
-        }
       }
     }
-
-    stage('Install Maven') {
-      steps {
-        sh '''
-        apt update
-        apt install -y maven
-        '''
-      }
-    }
-
     stage('Run Tests') {
       steps {
-        script {
-          sh 'mvn test'
-        }
+        sh 'mvn test'
       }
     }
   }
