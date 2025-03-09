@@ -6,10 +6,19 @@ pipeline {
     }
   }
   stages {
-    stage('Run Tests') {
+
+    stage('verify chrome version') {
       steps {
         script {
         sh 'google-chrome --version'
+        }
+      }
+    }
+
+    stage('Run Tests') {
+      steps {
+        script {
+          sh 'mvn test'
         }
       }
     }
