@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 @Execution(org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT)
 public class WebDriverTool {
@@ -27,7 +28,7 @@ public class WebDriverTool {
                 FirefoxOptions options = new FirefoxOptions();
                 options.addArguments("--no-sandbox");    
                 try {
-                    driver = new RemoteWebDriver(new java.net.URL(fullGridUrl), options);
+                    driver = new RemoteWebDriver(new URL(fullGridUrl), options);
                 } catch (MalformedURLException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -40,7 +41,7 @@ public class WebDriverTool {
                 ChromeOptions optionsChrome = new ChromeOptions();
                 optionsChrome.addArguments("--no-sandbox");        
                 try {
-                    driver = new RemoteWebDriver(new java.net.URL(fullGridUrl), optionsChrome);
+                    driver = new RemoteWebDriver(new URL(fullGridUrl), optionsChrome);
                 } catch (MalformedURLException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
