@@ -18,7 +18,7 @@ public class WebDriverTool {
         String browser = System.getProperty("driver", "chrome").toLowerCase();
  
 
-        String fullGridUrl = "http://127.0.0.1/:4444/wd/hub"; 
+        String fullGridUrl = "http://127.0.0.1:4444/wd/hub"; 
         //String fullGridUrl = "http://192.168.1.95:4444/wd/hub"; 
         // String fullGridUrl = "http://localhost:4444/wd/hub";
         
