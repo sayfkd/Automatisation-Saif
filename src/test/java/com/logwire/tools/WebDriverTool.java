@@ -5,13 +5,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 @Execution(org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT)
 public class WebDriverTool {
 
     static public WebDriver driver;
 
-    public static void setDriver() throws IOException {
+    public static void setDriver(){
 
         String browser = System.getProperty("driver", "chrome").toLowerCase();
  
@@ -23,7 +24,12 @@ public class WebDriverTool {
             case "firefox":
                 FirefoxOptions options = new FirefoxOptions();
                 options.addArguments("--no-sandbox");    
-                driver = new RemoteWebDriver(new java.net.URL(fullGridUrl), options);
+                try {
+                    driver = new RemoteWebDriver(new java.net.URL(fullGridUrl), options);
+                } catch (MalformedURLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 //WebDriverManager.firefoxdriver().setup(); 
                 //driver = new FirefoxDriver();
                 break;
@@ -31,7 +37,12 @@ public class WebDriverTool {
             default:
                 ChromeOptions optionsChrome = new ChromeOptions();
                 optionsChrome.addArguments("--no-sandbox");        
-                driver = new RemoteWebDriver(new java.net.URL(fullGridUrl), optionsChrome);
+                try {
+                    driver = new RemoteWebDriver(new java.net.URL(fullGridUrl), optionsChrome);
+                } catch (MalformedURLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 break;
         }
     }
