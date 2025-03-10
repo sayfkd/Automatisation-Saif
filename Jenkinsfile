@@ -1,23 +1,22 @@
 pipeline {
-    agent { docker {
-                image "selenium/standalone-chrome" 
-                args '--entrypoint=""'
-            } 
-        } 
-
-    tools {
-        maven 'M3'
-    }
-
-    stages {
-        stage('mvn check ') { 
-            steps { sh "mvn --version" } 
-        }
-        stage('chrome check ') { 
-            steps { sh "google-chrome --version" } 
-        }
-        stage('test ') { 
-            steps { sh "mvn clean test" } 
+    agent {
+        docker {
+            image 'maven:3.8.6-openjdk-11'
         }
     }
+    
+        stage('Install Dependencies') {
+            steps {
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Run Selenium Tests') {
+            steps {
+                sh 'mvn test -Ducumber.filter.tags="@Cart"'
+            }
+        }
+
+    }
+
 }

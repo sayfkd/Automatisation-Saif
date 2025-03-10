@@ -1,16 +1,14 @@
 package com.logwire.hooks;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import java.io.IOException;
 
 import com.logwire.tools.WebDriverTool;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 
 public class Hooks {
     @Before
-    public void BeforeEach(){
+    public void BeforeEach() throws IOException{
         WebDriverTool.setDriver();
     }
 
