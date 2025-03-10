@@ -1,5 +1,4 @@
 package com.logwire.tools;
-
 import org.junit.jupiter.api.parallel.Execution;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,8 +16,8 @@ public class WebDriverTool {
         String browser = System.getProperty("driver", "chrome").toLowerCase();
  
 
-        String fullGridUrl = "http://localhost:4444/wd/hub"; 
-
+        String fullGridUrl = "http://172.27.0.2:4444/wd/hub"; 
+        // String fullGridUrl = "http://localhost:4444/wd/hub"; 
 
         switch (browser) {
             case "firefox":

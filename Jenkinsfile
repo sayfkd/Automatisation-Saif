@@ -4,7 +4,8 @@ pipeline {
             image 'maven:3.8.6-openjdk-11'
         }
     }
-    
+    stages{
+
         stage('Install Dependencies') {
             steps {
                 sh 'mvn clean install -DskipTests'
