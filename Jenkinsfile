@@ -14,7 +14,7 @@ pipeline {
 
         stage('Run Selenium Tests') {
             steps {
-                sh 'mvn test -Ducumber.filter.tags="@Cart" '
+                sh 'mvn test -Ducumber.filter.tags="@Cart" mvn test -Ducumber.filter.tags="@Cart" -Dcucumber.plugin=json:target/cucumber-report.json'
             }
         }
 
